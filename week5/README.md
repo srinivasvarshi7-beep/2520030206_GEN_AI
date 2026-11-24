@@ -1,98 +1,69 @@
+# Week 5 – Token Economics: Cost and Rate-Limit Budgeting
 
-# Week 5 - Token Economics: Cost and Rate-Limit Budgeting
+## Aim
 
-## Objective
-To develop a Python-based token economics budget planner that estimates LLM input and output token consumption, calculates API usage costs, checks rate limits, and evaluates daily and monthly budgets.
+The aim of this task was to create a Python program that calculates the token usage and estimated cost of an AI application. I also worked on checking whether the application stays within the given daily budget, monthly budget and API rate limits.
 
 ## Technologies Used
-- Python 3
+
+- Python
 - python-dotenv
 - VS Code
-- Environment variables (.env)
-- unittest
+- Environment Variables (.env)
+- Unittest
 
 ## Project Files
-- `budget.py` - Calculates token usage, API costs, and rate-limit checks.
-- `test_budget.py` - Contains automated unit tests.
-- `requirements.txt` - Lists required Python dependencies.
-- `.env` - Stores configurable pricing, usage, rate limits, and budget values.
 
-## Implementation
-The budget planner uses configurable environment variables to calculate:
-- Daily input tokens
-- Daily output tokens
-- Total daily tokens
-- Estimated daily API cost
-- Estimated monthly API cost
-- Requests per minute (RPM)
-- Tokens per minute (TPM)
-- Safety margin
-- Daily and monthly budget validation
-
-## Initial Configuration
-- Requests per day: 2000
-- Average input tokens: 1200
-- Average output tokens: 300
-- Input price per million tokens: $0.30
-- Output price per million tokens: $1.20
-- Daily budget: $2
-- Monthly budget: $50
-- Safety margin: 20%
+- `budget.py` – Contains the code for calculating token usage, API costs and checking limits.
+- `test_budget.py` – Used to test whether the calculations are working correctly.
+- `requirements.txt` – Contains the required Python package.
+- `.env` – Stores the token usage, pricing and budget details.
+- `.env.example` – Contains an example of the configuration values.
 
 ## Execution
-Run the budget planner:
 
-```bash
-python week5/budget.py
-```
-
-Install dependencies:
+First, I installed the required package using the following command:
 
 ```bash
 python -m pip install -r week5/requirements.txt
 ```
 
-Run automated tests:
+After installing the package, I ran the budget planner using:
+
+```bash
+python week5/budget.py
+```
+
+The program used the values stored in the `.env` file, such as daily requests, input tokens, output tokens, API pricing and budget limits.
+
+It calculated the daily input tokens, output tokens, total token usage, estimated daily cost and monthly cost.
+
+It also checked the RPM (Requests Per Minute) and TPM (Tokens Per Minute) limits and displayed whether each condition passed or failed.
+
+I then executed the unit tests using:
 
 ```bash
 python -m unittest week5/test_budget.py -v
 ```
 
-## Initial Results
-- Daily input tokens: 2,400,000
-- Daily output tokens: 600,000
-- Total daily tokens: 3,000,000
-- Estimated daily cost: $1.44
-- Estimated monthly cost: $43.20
-- Adjusted RPM: 36
-- Adjusted TPM: 54,000
-- Budget and rate-limit checks: PASS
-- Recommendation: GO
+All four unit tests passed successfully.
 
-## Automated Testing
-All four unit tests passed:
-1. Cost estimation
-2. Capacity validation
-3. RPM limit failure
-4. Monthly budget failure
+## What I Understood
 
-## What-If Analysis
+Through this task, I understood how token usage affects the cost of an AI application. I learned that both input tokens and output tokens are considered when calculating the API cost.
 
-### Experiment 1: Double Daily Requests
-The daily request count was increased from 2000 to 4000.
+I also understood the meaning of RPM and TPM and why it is important to check these limits before using an AI application.
 
-Results:
-- Daily input tokens: 4,800,000
-- Daily output tokens: 1,200,000
-- Daily cost: $2.88
-- Monthly cost: $86.40
-- Daily budget: FAIL
-- Monthly budget: FAIL
-- RPM and TPM: PASS
-- Recommendation: NO-GO
+Another thing I learned was how to use environment variables to store values separately from the Python code. This makes it easier to change the pricing and budget details whenever required.
 
-### Observation
-Doubling daily requests doubles token consumption and estimated API cost. The daily and monthly budget limits are exceeded, demonstrating the importance of monitoring token usage and controlling API spending.
+I also performed a What-If Analysis by increasing the daily requests from 2000 to 4000. I observed that the token usage and estimated cost also doubled, causing the daily and monthly budget checks to fail.
+
+## Result
+
+Successfully implemented and executed the Token Economics Budget Planner. The program calculated the token usage and estimated API costs, checked the budget and rate limits, and displayed a GO or NO-GO recommendation.
+
+All four unit tests passed successfully. The initial configuration passed all the budget and rate-limit checks.
 
 ## Conclusion
-The experiment successfully demonstrates how token consumption, API pricing, rate limits, and budget constraints affect LLM application planning. The Python budget planner provides automated cost estimation, capacity validation, and GO/NO-GO recommendations.
+
+This task helped me understand how to estimate and manage the cost of using AI models. I also learned about token consumption, API pricing, rate limits and unit testing. By performing the What-If Analysis, I understood how increasing the number of requests can affect the overall cost of an AI application.
